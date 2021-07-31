@@ -1,23 +1,33 @@
 import Navbar from './Navbar.js';
 import Home from './Home';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import Create from './Create.js';
+import BlogDetails from './BlogDetails.js';
+import NotFound from './NotFound.js';
 
 function App() {
-
-  // const title = "Hello World";
-  // const subtitle = "Welcome to the blog";
-  // const randnum = Math.random()*100;
-  // const rand = randnum.toFixed(0);
-
   return (
+    <Router>
     <div className="App">
       <Navbar></Navbar>
       <div className="content">
-      <Home></Home>
-      {/* <h1>{title}</h1>
-      <p>{subtitle}</p>
-      <p>{rand}</p> */}
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route exact path="/create">
+          <Create/>
+        </Route>
+        <Route exact path="/blogs/:id">
+          <BlogDetails/>
+        </Route>
+        <Route exact path="*">
+          <NotFound/>
+        </Route>
+      </Switch>
       </div>
     </div>
+    </Router>
   );
 }
 
